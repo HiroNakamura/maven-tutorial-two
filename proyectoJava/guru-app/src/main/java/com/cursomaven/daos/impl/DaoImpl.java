@@ -6,6 +6,7 @@ import com.cursomaven.clases.Contacto;
 import com.cursomaven.daos.IDao;
 
 public class DaoImpl implements IDao<Contacto>{
+    
     @Override
     public Optional<Contacto> get(int id){
         return null;
