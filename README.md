@@ -7,7 +7,6 @@ Tutorial Maven
 ```bash
 $ mkdir pruebasJava && cd pruebasJava
 $ mvn archetype:generate -DgroupId=com.cursomaven -DartifactId=guru-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
-$ 
 ```
 
 **Empaquetar**
