@@ -11,15 +11,16 @@ public class DatabaseConnectionManager{
 	private final String url;
 	private final Properties properties; 
 
-
-	public DatabaseConnectionManager(String host, String databaseName
-		, String userName, String password){
+	public DatabaseConnectionManager(String host, 
+		String databaseName, 
+		String userName, 
+		String password){
+		
 		this.url = "jdbc:mysql://"+host+"/"+databaseName;
 		this.properties = new Properties();
 		this.properties.setProperty("user",userName);
 		this.properties.setProperty("password",password);
 		System.out.println("URL: "+this.url);
-		System.out.println("URL: jdbc:mysql://localhost:3306/cursomaven");
 		System.out.println("Properties: "+this.properties);
 	}
 

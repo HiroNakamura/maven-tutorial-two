@@ -3,12 +3,14 @@ package com.cursomaven;
 import com.cursomaven.clases.Contacto;
 import com.cursomaven.connection.DatabaseConnectionManager;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
 public class App{
+    public static final String DRIVER = "com.mysql.jdbc.Driver";
     public static final String HOST = "localhost:3306";
     public static final String BD = "cursomaven";
     public static final String USER = "root";
@@ -17,7 +19,7 @@ public class App{
 
     public static void main( String[] args ){
         System.out.println( "\t======== [Guru Project] ======" );
-        testA();
+        //testA();
         testB();
     }
 
@@ -25,10 +27,11 @@ public class App{
         DatabaseConnectionManager dcm = new DatabaseConnectionManager(HOST,BD,USER,PASSW);
         int cantidad = 0;
         try{
-            Connection connection = dcm.getConnection();
-            System.out.println("Conexion: "+connection.toString());
+            Class.forName(DRIVER);
+            //Class.forName(DRIVER).newInstance();
+            Connection connection = dcm.getConnection();            
             Statement statement = connection.createStatement();
-            ResultSet resultSet =statement.executeQuery(QUERY);
+            ResultSet resultSet = statement.executeQuery(QUERY);
             
             while(resultSet.next()){
                 cantidad = resultSet.getInt(1);
@@ -48,7 +51,9 @@ public class App{
                 connection.close();
             }
         }catch(SQLException sqle){
-            System.err.println("Ha ocurrido una excepcion: "+sqle.getMessage());
+            System.err.println("Ha ocurrido una excepcion [SQLException]: "+sqle.getMessage());
+        }catch(ClassNotFoundException cnfe){
+            System.err.println("Ha ocurrido una excepcion [ClassNotFoundException]: "+cnfe.getMessage());
         }finally{
             System.out.println("Hecho!!");
         }
