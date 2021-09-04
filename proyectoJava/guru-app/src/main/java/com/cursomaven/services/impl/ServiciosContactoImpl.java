@@ -9,7 +9,7 @@ import com.cursomaven.daos.impl.DaoImpl;
 import com.cursomaven.daos.IDao;
 
 
-public class ServiciosImpl implements IServicios<Contacto>{
+public class ServiciosContactoImpl implements IServicios<Contacto>{
     
     private IDao<Contacto> daoImpl = new DaoImpl();
 
