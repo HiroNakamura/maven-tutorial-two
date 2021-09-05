@@ -33,7 +33,8 @@ public class App{
             Connection connection = dcm.getConnection(); //  DriverManager.getConnection("jdbc:mysql://"+HOST+"/"+BD+"?useSSL=false",USER, PASSW);      
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(QUERY);
-            
+            Contacto conocido = null;
+
             while(resultSet.next()){
                 cantidad = resultSet.getInt(1);
             }
@@ -42,7 +43,16 @@ public class App{
             if(cantidad > 0){
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery("SELECT id, nombre, apellidos, telefono, correo FROM cursomaven.contacto");
+                if(resultSet.next()){
+                    conocido = new Contacto();
+                    conocido.setId(Integer.parseInt(resultSet.getString("id")));
+                    conocido.setNombre(resultSet.getString("nombre"));
+                    conocido.setApellidos(resultSet.getString("apellidos"));
+                    conocido.setTelefono(resultSet.getString("telefono"));
+                    conocido.setCorreo(resultSet.getString("correo"));
+                }
             }
+            System.out.println(conocido);
 
             if(resultSet != null){
                 resultSet.close();
