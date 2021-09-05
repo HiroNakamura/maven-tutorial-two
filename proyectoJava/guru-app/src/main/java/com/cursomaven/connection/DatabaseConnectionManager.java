@@ -25,6 +25,7 @@ public class DatabaseConnectionManager{
 	}
 
 	public Connection getConnection()throws SQLException{
-		return DriverManager.getConnection(this.url, this.properties);
+		//return DriverManager.getConnection(url, this.properties.getProperty("user"), this.properties.getProperty("password"));
+		return DriverManager.getConnection(this.url+"?useSSL=false", this.properties);
 	}
 }
