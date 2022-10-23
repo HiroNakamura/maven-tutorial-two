@@ -64,6 +64,30 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+
+        <!-- Ejecutable inicio-->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>java</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <mainClass>com.curso.java.App</mainClass>
+            <!--<arguments>
+            </arguments>
+            <systemProperties>
+             <systemPrperty></systemPrperty>
+            </systemProperties>-->
+          </configuration>
+        </plugin>
+       <!-- Ejecutable fin-->
+
       </plugins>
     </pluginManagement>
   </build>
