@@ -8,13 +8,26 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 import com.google.gson.Gson;
+
+import java.io.File;
+//import java.io.FileNotFoundException;
+//import java.io.FileReader;
+//import java.nio.charset.StandardCharsets;
+//import java.nio.file.Files;
+//import java.nio.file.Paths;
+import com.fasterxml.jackson.databind.ObjectMapper;
+//import java.util.stream.Stream;
 import com.curso.java.models.Punto;
 import com.curso.java.models.PuntoLista;
 import com.curso.java.models.Dominios;
+import com.curso.java.models.DataVerified;
+import com.curso.java.models.VerifyData;
+import com.curso.java.models.ReturnCodes;
+import com.curso.java.models.Objeto;
 
 public class App {
     public static void main(String[] args) throws Exception{
-        out.println("\t [Curso Java Maven]");
+        out.println("\t [Curso Java Maven Actualizado]");
         /*if(args.length > 0){
             for(String arg: args){
                 System.out.println("Hola, "+arg);
@@ -25,7 +38,52 @@ public class App {
         out.println("\t===========================");
         //testB();
         out.println("\t===========================");
-        testC();
+        //testC();
+        out.println("\t===========================");
+        testD();
+    }
+
+    static void testD(){ 
+        //final String strJson = "{'verifyData':{'name':'Verificador','status':'Disponible','timestamp':'20221023 14:34'},'returnCodes':[{'returnCode':'FPC2300','name':'Verificador ocular','status':'Correcto'}],'lists':[{'nss':'2','td':'33'},{'nss':'NULL','td':'NULL'},{'nss':'4','td':'NULL'}]}";      
+        //JSONObject jsonObj = null;
+        //JSONArray jsonArray = new JSONArray();
+        DataVerified dataVerified = null;
+        VerifyData verifyData = null;
+        ReturnCodes returnCodes = null;
+        Objeto objeto1 = null;
+        Objeto objeto2 = null;
+        Objeto objeto3 = null;
+        List<Objeto> lists = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File("/home/fernando/Documentos/pruebasMaven/proyectoJava/auditor-app/src/main/java/com/curso/java/verificacion.json");
+        try{
+            
+            dataVerified = objectMapper.readValue(file, DataVerified.class);
+
+            if(dataVerified!=null){
+                out.println("dataVerified no es NULL...");
+                verifyData = dataVerified.getVerifyData();
+                returnCodes = dataVerified.getReturnCodes();
+                lists = dataVerified.getLists();
+                objeto1 = lists.get(0);
+                objeto2 = lists.get(1);
+                objeto3 = lists.get(2);
+                out.println("\t [Resultados]");
+                out.println("DataVerified: "+dataVerified);
+                out.println("VerifyData: "+verifyData);
+                out.println("ReturnCodes: "+returnCodes);
+                out.println("Objeto [0]: "+objeto1);
+                out.println("Objeto [1]: "+objeto2);
+                out.println("Objeto [2]: "+objeto3);
+            }
+
+
+        }
+        catch(JSONException jse){
+            err.println("JSONException: "+jse.getMessage());
+        }catch(Exception ex){
+            err.println("Exception: "+ex.getMessage());
+        }
     }
 
     static void testC(){

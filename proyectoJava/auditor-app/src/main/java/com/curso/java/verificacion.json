@@ -1,0 +1,17 @@
+{
+    "verifyData":{
+        "name": "Verificador",
+        "status":"Disponible",
+        "timestamp": "20221023 14:34"
+    },
+    "returnCodes":{
+        "returnCode":"FPC2300",
+        "name":"Verificador ocular",
+        "status":"Correcto"
+    },
+    "lists":[
+        {"nss":"2","td":"33"},
+        {"nss":"NULL","td":"NULL"},
+        {"nss":"4","td":"NULL"}
+    ]
+}
