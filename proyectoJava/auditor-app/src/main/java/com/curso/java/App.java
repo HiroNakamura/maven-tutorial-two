@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.curso.java.models.Punto;
 import com.curso.java.models.PuntoLista;
 import com.curso.java.models.Dominios;
+import com.curso.java.exceptions.PuntoException;
 import com.curso.java.models.DataVerified;
 import com.curso.java.models.VerifyData;
 import com.curso.java.models.ReturnCodes;
@@ -40,7 +41,48 @@ public class App {
         out.println("\t===========================");
         //testC();
         out.println("\t===========================");
-        testD();
+        //testD();
+        testE();
+    }
+
+    public static void print(Object obj){
+        out.println(obj);
+    }
+
+    public static void testE(){
+        print("\t");
+        Punto punto1 = null;
+        Punto punto2 = null;
+        try{
+            punto2 = punto1.gePunto(-1, 0);
+            print(punto2);
+        }catch(PuntoException pex){
+            err.println("Ha ocurrido una excepcion tipo Punto: "+pex.getMessage());
+        }catch(NullPointerException npe){
+            err.println("Ha ocurrido una excepcion tipo null: "+npe.getMessage());
+        }
+
+        punto1 = new Punto(1,1);
+        punto2 = null;
+        try{
+            punto2 = punto1.gePunto(-1, 0);
+            print(punto2);
+        }catch(PuntoException pex){
+            err.println("Ha ocurrido una excepcion tipo Punto: "+pex.getMessage());
+        }catch(NullPointerException npe){
+            err.println("Ha ocurrido una excepcion tipo null: "+npe.getMessage());
+        }
+
+        punto2 = null;
+        try{
+            punto2 = punto1.gePunto(1, 1);
+            print(punto2);
+        }catch(PuntoException pex){
+            err.println("Ha ocurrido una excepcion tipo Punto: "+pex.getMessage());
+        }catch(NullPointerException npe){
+            err.println("Ha ocurrido una excepcion tipo null: "+npe.getMessage());
+        }
+
     }
 
     static void testD(){ 

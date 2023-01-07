@@ -51,4 +51,29 @@ $ mvn package
 mvn exec:java -Dexec.mainClass="com.curso.App"
 ```
 
+**Crear proyecto (otra forma)**
+```bash
+$ mvn archetype:generate -DgroupId=com.inforhomex.auditor -DartifactId=auditor -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+**Limpiar y empaquetar**
+```bash
+$ mvn clean package
+```
+**Ejecutar**
+```bash
+$ java -cp target/classes com.inforhomex.auditor.App
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
